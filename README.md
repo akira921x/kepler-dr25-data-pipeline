@@ -102,6 +102,10 @@ The pipeline implements a rigorous 3-stage process:
 
 #### Stage 3: Cross-Catalog Integration
 - **Left-Join Strategy**: Preserves complete TCE detection catalog
+- **ExoMiner Quality Filters**: Applies filters following Valizadegan et al. (2022) methodology:
+  - MES > 8.0 (high-significance detections)
+  - Stellar temperature > 3500K (reliable stellar characterization)
+  - Transit count ≥ 3 (sufficient observational data)
 - **Binary Labeling**: Assigns PC (Planet Candidate) vs AP (Astrophysical Phenomenon) labels
 - **Column Standardization**: Implements consistent ordering and formatting
 
@@ -110,7 +114,8 @@ The pipeline implements a rigorous 3-stage process:
 #### Training Dataset (`q1_q17_dr25_tce_train_output.csv`)
 - **Purpose**: Supervised machine learning with definitive labels
 - **Labels**: PC (CONFIRMED KOIs) vs AP (all other TCEs)
-- **Size**: ~25,000+ labeled examples
+- **Quality Filters**: ExoMiner-compliant filtering (MES > 8.0, T_eff > 3500K, ≥3 transits)
+- **Size**: High-quality labeled examples after filtering
 - **Applications**: ExoMiner training, algorithm development, performance evaluation
 
 #### Discovery Dataset (`q1_q17_dr25_tce_candidate_output.csv`)
