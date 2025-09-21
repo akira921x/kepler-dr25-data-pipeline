@@ -1,0 +1,19 @@
+# Ignore Markdown files in the root directory (except README.md)
+/*.md
+!README.md
+
+# Ignore tmp and secret directories
+/tmp
+/secret
+
+# Generated data files (allow specific output files for reproducibility)
+# data/*output.csv
+
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
