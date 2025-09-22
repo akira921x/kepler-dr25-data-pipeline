@@ -17,7 +17,7 @@ The Kepler Space Telescope's Data Release 25 represents nine years of unpreceden
 - **🔬 Scientific Rigor**: Follows NASA Exoplanet Archive standards and published methodologies
 - **🤖 ML-Ready Outputs**: Optimized datasets for supervised learning and discovery applications
 - **📈 Quality Control**: Systematic removal of known artifacts and data validation
-- **🔄 Dual-Purpose Architecture**: Separate training and discovery datasets for maximum scientific impact
+- **🔄 Unified Architecture**: Single training dataset with complete CANDIDATE preservation for maximum scientific accuracy
 - **📝 Comprehensive Documentation**: Complete workflow with scientific references and ExoMiner compatibility notes
 
 ## 🚀 Quick Start
@@ -76,8 +76,7 @@ kepler-dr25-data-pipeline/
 ├── data/                                       # Data directory (NASA source)
 │   ├── q1_q17_dr25_tce_raw.csv                 # Input: Raw TCE data (from NASA)
 │   ├── q1_q17_dr25_koi_raw.csv                 # Input: Raw KOI data (from NASA)
-│   ├── q1_q17_dr25_tce_train_output.csv        # Output: Training dataset
-│   └── q1_q17_dr25_tce_candidate_output.csv    # Output: Discovery dataset
+│   └── q1_q17_dr25_tce_train_output.csv        # Output: Unified training dataset
 ├── requirements.txt                            # Python package dependencies
 ├── LICENSE                                     # MIT License
 ├── .gitignore                                  # Git ignore rules
@@ -95,34 +94,30 @@ The pipeline implements a rigorous 3-stage process:
 - **UID Generation**: Creates standardized Kepler identifiers (`kplrKKKKKKKKK-PP`)
 - **Data Validation**: Ensures scientific integrity and completeness
 
-#### Stage 2: KOI Classification
-- **Strategic Partitioning**: Separates candidates for discovery applications
-- **Disposition Analysis**: Processes CONFIRMED, FALSE POSITIVE, and CANDIDATE classifications
-- **Training Optimization**: Excludes candidates to ensure clean labels
+#### Stage 2: KOI Processing
+- **UID Generation**: Creates standardized identifiers for all KOI records
+- **Disposition Analysis**: Processes all KOI classifications (CONFIRMED, FALSE POSITIVE, CANDIDATE)
+- **Complete Preservation**: Includes all KOI data for unified training approach
 
-#### Stage 3: Cross-Catalog Integration
-- **Left-Join Strategy**: Preserves complete TCE detection catalog
-- **ExoMiner Quality Filters**: Applies filters following Valizadegan et al. (2022) methodology:
+#### Stage 3: Unified Integration
+- **Outer-Join Strategy**: Preserves ALL KOI records, especially CANDIDATE
+- **ExoMiner Quality Filters**: Applies TCE filters following established methodology:
   - MES > 8.0 (high-significance detections)
   - Stellar temperature > 3500K (reliable stellar characterization)
   - Transit count ≥ 3 (sufficient observational data)
-- **Binary Labeling**: Assigns PC (Planet Candidate) vs AP (Astrophysical Phenomenon) labels
-- **Column Standardization**: Implements consistent ordering and formatting
+- **Unified Labeling**: koi_pdisposition='CANDIDATE' → PC, all others → FP
+- **Complete CANDIDATE Preservation**: Ensures all 4,717 CANDIDATE records become PC labels
 
-### Output Datasets
+### Output Dataset
 
-#### Training Dataset (`q1_q17_dr25_tce_train_output.csv`)
-- **Purpose**: Supervised machine learning with definitive labels
-- **Labels**: PC (CONFIRMED KOIs) vs AP (all other TCEs)
-- **Quality Filters**: ExoMiner-compliant filtering (MES > 8.0, T_eff > 3500K, ≥3 transits)
-- **Size**: High-quality labeled examples after filtering
-- **Applications**: ExoMiner training, algorithm development, performance evaluation
-
-#### Discovery Dataset (`q1_q17_dr25_tce_candidate_output.csv`)
-- **Purpose**: Future exoplanet discovery through classification
-- **Content**: KOI candidates excluded from training
-- **Size**: ~4,000+ candidate objects
-- **Applications**: Model application, validation studies, new discoveries
+#### Unified Training Dataset (`q1_q17_dr25_tce_train_output.csv`)
+- **Purpose**: Comprehensive machine learning dataset with complete CANDIDATE preservation
+- **Labels**: PC (koi_pdisposition='CANDIDATE') vs FP (all others including FALSE POSITIVE)
+- **CANDIDATE Preservation**: All 4,717 CANDIDATE records preserved as PC labels
+- **Quality Filters**: ExoMiner-compliant TCE filtering (MES > 8.0, T_eff > 3500K, ≥3 transits)
+- **Architecture**: Outer join ensures no CANDIDATE loss during processing
+- **Size**: Complete dataset with all planetary candidates included
+- **Applications**: Machine learning training, algorithm development, comprehensive evaluation
 
 ## Visualization Features
 
@@ -208,14 +203,14 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
-**Version 1.0 - Production Ready**
+**Version 1.4.0 - Complete CANDIDATE Preservation**
 
-- Complete preprocessing pipeline implementation
-- Interactive Altair visualization dashboard
-- Comprehensive scientific documentation
-- Dual-purpose dataset architecture
-- NASA standards compliance
-- ExoMiner methodology compatibility
+- ✅ **Unified preprocessing pipeline** with complete CANDIDATE preservation
+- ✅ **Fixed field references** using correct koi_pdisposition field
+- ✅ **Outer join architecture** ensuring no CANDIDATE loss (4,717 preserved)
+- ✅ **Streamlined documentation** and improved notebook clarity
+- ✅ **Interactive visualization dashboard** with CANDIDATE preservation verification
+- ✅ **NASA standards compliance** and ExoMiner methodology compatibility
 
 **Ready for research applications, educational use, and machine learning development!**
 
