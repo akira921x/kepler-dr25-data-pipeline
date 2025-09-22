@@ -7,20 +7,20 @@
 
 A comprehensive data preprocessing pipeline for Kepler Data Release 25, designed for exoplanet detection and classification research. This pipeline transforms raw astronomical data into research-grade datasets suitable for machine learning applications while maintaining strict scientific standards. Compatible with ExoMiner methodology and other machine learning frameworks.
 
-## 🌟 Overview
+## Overview
 
 The Kepler Space Telescope's Data Release 25 represents nine years of unprecedented exoplanet discovery. This preprocessing pipeline standardizes raw Threshold Crossing Event (TCE) and Kepler Objects of Interest (KOI) catalogs from NASA's MAST archive into formats suitable for modern machine learning frameworks including ExoMiner and other detection algorithms.
 
 ### Key Features
 
-- **📊 Interactive Data Analysis**: Altair-powered statistical visualizations using grammar of graphics for comprehensive data exploration
-- **🔬 Scientific Rigor**: Follows NASA Exoplanet Archive standards and published methodologies
-- **🤖 ML-Ready Outputs**: Optimized datasets for supervised learning and discovery applications
-- **📈 Quality Control**: Systematic removal of known artifacts and data validation
-- **🔄 Unified Architecture**: Single training dataset with complete CANDIDATE preservation for maximum scientific accuracy
-- **📝 Comprehensive Documentation**: Complete workflow with scientific references and ExoMiner compatibility notes
+- **Interactive Data Analysis**: Altair-powered statistical visualizations using grammar of graphics for comprehensive data exploration
+- **Scientific Rigor**: Follows NASA Exoplanet Archive standards and published methodologies
+- **ML-Ready Outputs**: Optimized datasets for supervised learning and discovery applications
+- **Quality Control**: Systematic removal of known artifacts and data validation
+- **Unified Architecture**: Single training dataset with complete CANDIDATE preservation for maximum scientific accuracy
+- **Comprehensive Documentation**: Complete workflow with scientific references and ExoMiner compatibility notes
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -31,22 +31,24 @@ pip install pandas numpy matplotlib seaborn altair vega_datasets jupyter
 
 ### Data Requirements
 
-**📂 Data Source Attribution**: All data files in this repository's `data/` folder originate from NASA's Exoplanet Archive and are provided for reproducibility purposes only. These represent a specific snapshot used in the original analysis.
+**Data Source Attribution**: All data files in this repository's `data/` folder originate from NASA's Exoplanet Archive and are provided for reproducibility purposes only. These represent a specific snapshot used in the original analysis.
 
-**🔬 For Research Use**: Researchers should download the latest data directly from NASA to ensure current results and discoveries.
+**For Research Use**: Researchers should download the latest data directly from NASA to ensure current results and discoveries.
 
 Download the required Kepler DR25 data files from the NASA Exoplanet Archive:
 
-**🔗 Data Source**: Visit the [Kepler Mission Data Products](https://exoplanetarchive.ipac.caltech.edu/docs/KeplerMission.html#:~:text=%C2%B9%20The%20Cumulative%20table%20is,catalog%20(Slawson%20et%20al)) page
+**Data Source**: Visit the [Kepler Mission Data Products](https://exoplanetarchive.ipac.caltech.edu/docs/KeplerMission.html#:~:text=%C2%B9%20The%20Cumulative%20table%20is,catalog%20(Slawson%20et%20al)) page
 
-**📥 Download Instructions**:
+**Download Instructions**:
+
 1. Navigate to the Kepler Mission Data Products page
 2. Locate the **Interactive Tables** section (Note: API calls are no longer supported)
 3. Download the following datasets using the **interactive table interface**:
    - **TCE Table**: Threshold Crossing Events - Download **ALL COLUMNS** → Save as `q1_q17_dr25_tce_raw.csv` (~54MB)
    - **KOI Table**: Kepler Objects of Interest - Download **ALL COLUMNS** → Save as `q1_q17_dr25_koi_raw.csv` (~4.6MB)
 
-**⚠️ Important**:
+**Important**:
+
 - Use the **interactive table** interface only (API service discontinued)
 - Download **ALL COLUMNS** to ensure compatibility with the preprocessing pipeline
 - Save files with the exact names specified above
@@ -70,7 +72,7 @@ jupyter notebook kepler_dr25_exominer_preprocessing.ipynb
 
 ## Project Structure
 
-```
+```text
 kepler-dr25-data-pipeline/
 ├── kepler_dr25_exominer_preprocessing.ipynb    # Main analysis notebook
 ├── data/                                       # Data directory (NASA source)
@@ -90,16 +92,19 @@ kepler-dr25-data-pipeline/
 The pipeline implements a rigorous 3-stage process:
 
 #### Stage 1: TCE Quality Control
+
 - **Rogue TCE Filtering**: Removes systematic artifacts (tce_rogue_flag = 1)
 - **UID Generation**: Creates standardized Kepler identifiers (`kplrKKKKKKKKK-PP`)
 - **Data Validation**: Ensures scientific integrity and completeness
 
 #### Stage 2: KOI Processing
+
 - **UID Generation**: Creates standardized identifiers for all KOI records
 - **Disposition Analysis**: Processes all KOI classifications (CONFIRMED, FALSE POSITIVE, CANDIDATE)
 - **Complete Preservation**: Includes all KOI data for unified training approach
 
 #### Stage 3: Unified Integration with DV Quality Control
+
 - **Data Validation (DV) Completeness Check**: Ensures robust astronomical data quality
   - Key DV metrics: period, MES, depth, model SNR
   - Optional metrics: centroid offset, odd-even statistics (if available)
@@ -115,6 +120,7 @@ The pipeline implements a rigorous 3-stage process:
 ### Output Dataset
 
 #### Unified Training Dataset (`q1_q17_dr25_tce_train_output.csv`)
+
 - **Purpose**: Comprehensive machine learning dataset with complete CANDIDATE preservation
 - **Labels**: PC (koi_pdisposition='CANDIDATE') vs FP (all others including FALSE POSITIVE)
 - **CANDIDATE Preservation**: All 4,717 CANDIDATE records preserved as PC labels
@@ -141,11 +147,13 @@ The notebook includes comprehensive interactive visualizations:
 ## Scientific References
 
 ### Primary Reference
+
 **Valizadegan, H., et al. 2022, *Astrophysical Journal*, 926, 120**
 "ExoMiner: A Highly Accurate and Explainable Deep Learning Classifier for Exoplanet Detection"
 [arXiv:2111.10009](https://arxiv.org/abs/2111.10009)
 
 ### Supporting Documentation
+
 - **NASA Exoplanet Archive**: [https://exoplanetarchive.ipac.caltech.edu/](https://exoplanetarchive.ipac.caltech.edu/)
 - **Kepler Data Processing Handbook**: Thompson et al. 2016, KSCI-19081-003
 - **DR25 Catalog Papers**: Thompson et al. 2018, ApJS 235, 38
@@ -154,12 +162,14 @@ The notebook includes comprehensive interactive visualizations:
 ## Performance Metrics
 
 ### Data Processing Efficiency
+
 - **Input Processing**: ~200,000+ astronomical records
 - **Quality Filtering**: Systematic artifact removal (rogue TCEs)
 - **Strategic Partitioning**: Optimized train/discovery split
 - **Processing Time**: ~5-10 minutes on standard hardware
 
 ### Scientific Impact
+
 - **Class Balance**: Maintains realistic astronomical ratios
 - **Data Currency**: Uses most recent NASA archive updates
 - **Reproducibility**: Standardized methodology with full documentation
@@ -168,6 +178,7 @@ The notebook includes comprehensive interactive visualizations:
 ## Technical Requirements
 
 ### Software Dependencies
+
 - **Python**: 3.8+ (recommended: 3.9+)
 - **Core Libraries**: pandas, numpy, matplotlib, seaborn
 - **Visualization**: altair, vega_datasets, jupyter
@@ -175,6 +186,7 @@ The notebook includes comprehensive interactive visualizations:
 - **Storage**: 2GB+ available space for data and outputs
 
 ### System Compatibility
+
 - **Operating Systems**: macOS, Linux, Windows
 - **Jupyter**: Notebook Server 6.0+
 - **Browser**: Modern browsers with JavaScript support for interactive visualizations
@@ -184,6 +196,7 @@ The notebook includes comprehensive interactive visualizations:
 Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
 
 ### Development Guidelines
+
 1. **Scientific Accuracy**: All changes must maintain scientific rigor
 2. **Documentation**: Update documentation for any methodology changes
 3. **Testing**: Verify processing with sample datasets
@@ -212,18 +225,23 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
-**Version 1.4.2 - ExoMiner 2022 Benchmark Comparison**
+### Version 1.5.0 - Clean Interface and Code Quality
 
-- ✅ **ExoMiner 2022 paper comparison** with comprehensive statistical analysis and validation
-- ✅ **Enhanced planet candidate preservation** - 4,717 PC vs 4,034 in original (+16.9% improvement)
-- ✅ **Quantitative benchmark analysis** showing superior CANDIDATE preservation strategy
-- ✅ **Visual comparison dashboard** demonstrating dataset composition improvements
-- ✅ **Scientific validation framework** with side-by-side methodology comparison
-- ✅ **Data Validation (DV) completeness check** ensuring robust astronomical data quality
-- ✅ **Two-tier filtering approach** with DV metrics validation before ExoMiner filters
-- ✅ **Complete CANDIDATE preservation** with unified preprocessing pipeline (all 4,717 preserved)
-- ✅ **Outer join architecture** ensuring no CANDIDATE loss during processing
-- ✅ **Enhanced documentation** with benchmark comparison and scientific impact assessment
+- **Clean interface design** - Removed all decorative elements for professional presentation
+- **Improved code readability** - Streamlined notebook outputs with focus on data and results
+- **Enhanced documentation quality** - Professional markdown formatting with proper structure
+- **Maintained scientific accuracy** - All analytical capabilities and data processing remain unchanged
+- **Professional presentation** - Clean, distraction-free interface suitable for academic and research use
+- **ExoMiner 2022 paper comparison** with comprehensive statistical analysis and validation
+- **Enhanced planet candidate preservation** - 4,717 PC vs 4,034 in original (+16.9% improvement)
+- **Quantitative benchmark analysis** showing superior CANDIDATE preservation strategy
+- **Visual comparison dashboard** demonstrating dataset composition improvements
+- **Scientific validation framework** with side-by-side methodology comparison
+- **Data Validation (DV) completeness check** ensuring robust astronomical data quality
+- **Two-tier filtering approach** with DV metrics validation before ExoMiner filters
+- **Complete CANDIDATE preservation** with unified preprocessing pipeline (all 4,717 preserved)
+- **Outer join architecture** ensuring no CANDIDATE loss during processing
+- **Enhanced documentation** with benchmark comparison and scientific impact assessment
 
 **Ready for research applications, educational use, and machine learning development!**
 
