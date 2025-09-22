@@ -103,19 +103,19 @@ The pipeline implements a rigorous 3-stage process:
 - **Disposition Analysis**: Processes all KOI classifications (CONFIRMED, FALSE POSITIVE, CANDIDATE)
 - **Complete Preservation**: Includes all KOI data for unified training approach
 
-#### Stage 3: Unified Integration with DV Quality Control
+#### Stage 3: TCE-Based Integration with Quality Control
 
 - **Data Validation (DV) Completeness Check**: Ensures robust astronomical data quality
   - Key DV metrics: period, MES, depth, model SNR
   - Optional metrics: centroid offset, odd-even statistics (if available)
   - Physical validity: positive period, positive MES, positive depth
-- **ExoMiner Quality Filters**: Applies TCE filters following established methodology:
-  - MES > 8.0 (high-significance detections)
-  - Stellar temperature > 3500K (reliable stellar characterization)
+- **Configurable Quality Filters**: Flexible filtering approach for different research needs:
+  - MES threshold (configurable, typically > 8.0 for high-significance detections)
+  - Stellar temperature filtering (configurable, typically > 3500K for reliable characterization)
   - Transit count ≥ 3 (sufficient observational data)
-- **Outer-Join Strategy**: Preserves ALL KOI records, especially CANDIDATE
-- **Unified Labeling**: koi_pdisposition='CANDIDATE' → PC, all others → FP
-- **Complete CANDIDATE Preservation**: Ensures all 4,717 CANDIDATE records become PC labels
+- **Left-Join Strategy**: Uses TCE as base table, enriched with KOI data where available
+- **Enhanced Labeling**: koi_pdisposition='CANDIDATE' → PC, all others → FP
+- **Consistent Row Count**: Output maintains TCE record count without creating additional rows
 
 ### Output Dataset
 
@@ -224,6 +224,14 @@ For questions about the scientific methodology or technical implementation:
 ---
 
 ## Current Status
+
+### Version 1.6.0 - Data Processing and Merge Logic Improvements
+
+- **Enhanced merge strategy** - Changed from outer join to left join using TCE as base table
+- **Flexible quality filtering** - Configurable MES and stellar temperature filters for different research needs
+- **Improved data flow** - TCE records enriched with KOI labels without creating additional rows
+- **Better labeling logic** - Clear distinction between PC (Planet Candidates) and FP (False Positives)
+- **Enhanced documentation** - Clearer explanations of merge strategy and filtering approach
 
 ### Version 1.5.1 - Bug Fixes and Stability Improvements
 
