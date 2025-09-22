@@ -99,12 +99,16 @@ The pipeline implements a rigorous 3-stage process:
 - **Disposition Analysis**: Processes all KOI classifications (CONFIRMED, FALSE POSITIVE, CANDIDATE)
 - **Complete Preservation**: Includes all KOI data for unified training approach
 
-#### Stage 3: Unified Integration
-- **Outer-Join Strategy**: Preserves ALL KOI records, especially CANDIDATE
+#### Stage 3: Unified Integration with DV Quality Control
+- **Data Validation (DV) Completeness Check**: Ensures robust astronomical data quality
+  - Key DV metrics: period, MES, depth, model SNR
+  - Optional metrics: centroid offset, odd-even statistics (if available)
+  - Physical validity: positive period, positive MES, positive depth
 - **ExoMiner Quality Filters**: Applies TCE filters following established methodology:
   - MES > 8.0 (high-significance detections)
   - Stellar temperature > 3500K (reliable stellar characterization)
   - Transit count ≥ 3 (sufficient observational data)
+- **Outer-Join Strategy**: Preserves ALL KOI records, especially CANDIDATE
 - **Unified Labeling**: koi_pdisposition='CANDIDATE' → PC, all others → FP
 - **Complete CANDIDATE Preservation**: Ensures all 4,717 CANDIDATE records become PC labels
 
@@ -114,8 +118,11 @@ The pipeline implements a rigorous 3-stage process:
 - **Purpose**: Comprehensive machine learning dataset with complete CANDIDATE preservation
 - **Labels**: PC (koi_pdisposition='CANDIDATE') vs FP (all others including FALSE POSITIVE)
 - **CANDIDATE Preservation**: All 4,717 CANDIDATE records preserved as PC labels
-- **Quality Filters**: ExoMiner-compliant TCE filtering (MES > 8.0, T_eff > 3500K, ≥3 transits)
+- **Data Quality Control**: Two-tier filtering approach
+  - **DV Completeness**: Key Data Validation metrics availability and physical validity
+  - **ExoMiner Filters**: MES > 8.0, T_eff > 3500K, ≥3 transits
 - **Architecture**: Outer join ensures no CANDIDATE loss during processing
+- **Scientific Rigor**: Follows NASA standards for astronomical data validation
 - **Size**: Complete dataset with all planetary candidates included
 - **Applications**: Machine learning training, algorithm development, comprehensive evaluation
 
@@ -203,13 +210,16 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
-**Version 1.4.0 - Complete CANDIDATE Preservation**
+**Version 1.4.1 - Enhanced Data Quality Control**
 
-- ✅ **Unified preprocessing pipeline** with complete CANDIDATE preservation
+- ✅ **Data Validation (DV) completeness check** ensuring robust astronomical data quality
+- ✅ **Two-tier filtering approach** with DV metrics validation before ExoMiner filters
+- ✅ **Enhanced scientific rigor** following NASA standards for astronomical data validation
+- ✅ **Complete CANDIDATE preservation** with unified preprocessing pipeline (4,717 preserved)
 - ✅ **Fixed field references** using correct koi_pdisposition field
-- ✅ **Outer join architecture** ensuring no CANDIDATE loss (4,717 preserved)
+- ✅ **Outer join architecture** ensuring no CANDIDATE loss during processing
 - ✅ **Streamlined documentation** and improved notebook clarity
-- ✅ **Interactive visualization dashboard** with CANDIDATE preservation verification
+- ✅ **Interactive visualization dashboard** with comprehensive quality metrics
 - ✅ **NASA standards compliance** and ExoMiner methodology compatibility
 
 **Ready for research applications, educational use, and machine learning development!**
