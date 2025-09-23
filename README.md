@@ -225,6 +225,15 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
+### Version 1.7.0 - Optimized Field Selection and Output Standardization
+
+- **Streamlined field selection** - Output limited to essential 33 fields for enhanced performance and compatibility
+- **Standardized output format** - Includes uid, target_id, and all required TCE/KOI analysis fields
+- **Improved data consistency** - Automatic handling of duplicate columns and field mapping
+- **Enhanced file efficiency** - Reduced output file size from 33MB to 5.9MB while maintaining full scientific value
+- **Robust error handling** - Fixed duplicate column issues in final processing stage
+- **Complete field coverage** - All core required, diagnostic, stellar, and planet parameter fields included
+
 ### Version 1.6.0 - Data Processing and Merge Logic Improvements
 
 - **Enhanced merge strategy** - Changed from outer join to left join using TCE as base table
