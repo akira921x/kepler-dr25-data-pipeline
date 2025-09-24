@@ -225,6 +225,14 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
+### Version 1.8.1 - Variable Definition and CSV Output Fixes
+
+- **Fixed Variable Scoping** - Resolved final_df undefined variable issues in summary reporting
+- **Enhanced CSV Output** - Added automatic CSV file saving within merge_tce_koi_data() function
+- **Improved Error Handling** - Better exception handling for missing datasets in pipeline execution
+- **Code Quality Improvements** - Fixed variable reference consistency and enhanced robustness
+- **Documentation Updates** - Improved variable flow documentation for better maintainability
+
 ### Version 1.8.0 - Enhanced Three-Class Labeling and Filter Optimization
 
 - **Three-Class Labeling System** - Implemented comprehensive PC/AFP/NTP classification for improved machine learning applications
