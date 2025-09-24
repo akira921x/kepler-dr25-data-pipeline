@@ -114,7 +114,7 @@ The pipeline implements a rigorous 3-stage process:
   - Stellar temperature filtering (configurable, typically > 3500K for reliable characterization)
   - Transit count ≥ 3 (sufficient observational data)
 - **Left-Join Strategy**: Uses TCE as base table, enriched with KOI data where available
-- **Enhanced Labeling**: koi_pdisposition='CANDIDATE' → PC, all others → FP
+- **Enhanced Labeling**: koi_pdisposition='CANDIDATE' → PC, 'FALSE POSITIVE' → AFP, others → NTP
 - **Consistent Row Count**: Output maintains TCE record count without creating additional rows
 
 ### Output Dataset
@@ -122,7 +122,7 @@ The pipeline implements a rigorous 3-stage process:
 #### Unified Training Dataset (`q1_q17_dr25_tce_train_output.csv`)
 
 - **Purpose**: Comprehensive machine learning dataset with complete CANDIDATE preservation
-- **Labels**: PC (koi_pdisposition='CANDIDATE') vs FP (all others including FALSE POSITIVE)
+- **Labels**: PC (koi_pdisposition='CANDIDATE'), AFP (koi_pdisposition='FALSE POSITIVE'), NTP (others)
 - **CANDIDATE Preservation**: All 4,717 CANDIDATE records preserved as PC labels
 - **Data Quality Control**: Two-tier filtering approach
   - **DV Completeness**: Key Data Validation metrics availability and physical validity
@@ -224,6 +224,15 @@ For questions about the scientific methodology or technical implementation:
 ---
 
 ## Current Status
+
+### Version 1.8.0 - Enhanced Three-Class Labeling and Filter Optimization
+
+- **Three-Class Labeling System** - Implemented comprehensive PC/AFP/NTP classification for improved machine learning applications
+- **Enhanced Label Logic** - CANDIDATE → PC, FALSE POSITIVE → AFP, all others → NTP for complete astronomical classification
+- **Optimized MES Filter** - Refined MES > 8.0 threshold for optimal balance between data quality and sample size
+- **Improved Target ID Handling** - Ensured integer type consistency for target_id field across all processing stages
+- **Enhanced Documentation** - Updated all markdown cells and documentation to reflect three-class system
+- **Robust Error Handling** - Fixed NameError issues and improved variable scoping in final summary reporting
 
 ### Version 1.7.0 - Optimized Field Selection and Output Standardization
 
