@@ -231,10 +231,10 @@ For questions about the scientific methodology or technical implementation:
   - koi_disposition='CONFIRMED' → PC (Planet Candidates)
   - koi_disposition='FALSE POSITIVE' → AFP (Astrophysical False Positives)
   - Remaining TCE records → NTP (Non-Transit-like Phenomena)
-- **Disabled ExoMiner Quality Filters** - Removed automatic filtering for broader dataset inclusion:
+- **Selective ExoMiner Quality Filters** - Optimized filtering approach for broader dataset inclusion:
   - MES > 8.0 filter: DISABLED
   - Teff > 3500K filter: DISABLED
-  - Transit count >= 3 filter: DISABLED
+  - Transit count >= 3 filter: ENABLED (essential for observation quality)
 - **Enhanced Data Completeness** - Preserves more astronomical data while maintaining scientific integrity
 - **Updated Documentation** - All cells and markdown updated to reflect new labeling system
 - **Improved Scientific Accuracy** - Uses confirmed planets as positive examples instead of candidates
