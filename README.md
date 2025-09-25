@@ -225,6 +225,20 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
+### Version 1.9.0 - Enhanced Labeling System and Filter Configuration
+
+- **NEW Labeling Rules** - Updated to use koi_disposition instead of koi_pdisposition for improved accuracy:
+  - koi_disposition='CONFIRMED' → PC (Planet Candidates)
+  - koi_disposition='FALSE POSITIVE' → AFP (Astrophysical False Positives)
+  - Remaining TCE records → NTP (Non-Transit-like Phenomena)
+- **Disabled ExoMiner Quality Filters** - Removed automatic filtering for broader dataset inclusion:
+  - MES > 8.0 filter: DISABLED
+  - Teff > 3500K filter: DISABLED
+  - Transit count >= 3 filter: DISABLED
+- **Enhanced Data Completeness** - Preserves more astronomical data while maintaining scientific integrity
+- **Updated Documentation** - All cells and markdown updated to reflect new labeling system
+- **Improved Scientific Accuracy** - Uses confirmed planets as positive examples instead of candidates
+
 ### Version 1.8.1 - Variable Definition and CSV Output Fixes
 
 - **Fixed Variable Scoping** - Resolved final_df undefined variable issues in summary reporting
