@@ -225,6 +225,17 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
+### Version 1.9.3 - Standardized 10-Digit UID Format
+
+- **Enhanced UID Standardization** - Updated all UID generation to use 10-digit KepID format:
+  - New format: `kplrKKKKKKKKKK-PP` (10-digit zero-padded KepID + 2-digit planet number)
+  - Old format: `kplrKKKKKKKKK-PP` (9-digit zero-padded KepID + 2-digit planet number)
+  - Example: `kplr0000757099-01` instead of `kplr000757099-01`
+- **Improved Compatibility** - Consistent UID format across all Kepler data processing
+- **Enhanced Standards Compliance** - Aligns with modern astronomical data formatting practices
+- **Updated Core Functions** - All UID generation functions updated for 10-digit format
+- **Documentation Updates** - All examples and documentation reflect new UID format
+
 ### Version 1.9.2 - CANDIDATE Exclusion and Clean Training Data
 
 - **NEW CANDIDATE Exclusion Logic** - Comprehensive data cleaning approach to prevent training contamination:
@@ -318,9 +329,14 @@ For questions about the scientific methodology or technical implementation:
 
 **Ready for research applications, educational use, and machine learning development!**
 
-### Latest Updates (v1.9.2)
+### Latest Updates (v1.9.3)
 
-The newest version introduces a critical improvement for machine learning applications: **CANDIDATE Exclusion Logic**. This ensures that training datasets are free from potentially ambiguous CANDIDATE classifications that could introduce noise or bias into machine learning models.
+The newest version introduces **Standardized 10-Digit UID Format** for enhanced compatibility and standards compliance. This update ensures consistent UID formatting across all Kepler data processing while maintaining all previous features including CANDIDATE exclusion logic for clean training datasets.
+
+**Key Improvements:**
+- **UID Standardization**: All UIDs now use 10-digit zero-padded KepID format
+- **Enhanced Compatibility**: Consistent formatting across all astronomical data processing
+- **Maintained Features**: All v1.9.2 CANDIDATE exclusion and clean training data features preserved
 
 **Key Benefits:**
 - **Data Purity**: Clean separation between confirmed planets, false positives, and unknown objects
