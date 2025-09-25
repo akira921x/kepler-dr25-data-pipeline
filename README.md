@@ -225,6 +225,23 @@ For questions about the scientific methodology or technical implementation:
 
 ## Current Status
 
+### Version 1.9.2 - CANDIDATE Exclusion and Clean Training Data
+
+- **NEW CANDIDATE Exclusion Logic** - Comprehensive data cleaning approach to prevent training contamination:
+  - Step 1: Identify all kepids with koi_disposition='CANDIDATE'
+  - Step 2: Remove all corresponding TCE records BEFORE quality filtering
+  - Step 3: Apply labeling only to remaining clean data (CONFIRMED→PC, FALSE POSITIVE→AFP, remaining TCE→NTP)
+- **Enhanced Data Purity** - Ensures no CANDIDATE status objects interfere with training labels
+- **Improved Pipeline Flow** - Three-step processing: rogue removal → CANDIDATE exclusion → quality filtering
+- **Clean Training Dataset** - Eliminates potential data leakage from ambiguous CANDIDATE classifications
+- **Updated Documentation** - All processing steps and logic clearly documented throughout pipeline
+
+### Version 1.9.1 - Documentation and Code Quality Improvements
+
+- **Enhanced Code Documentation** - Improved function docstrings and processing step explanations
+- **Better Error Handling** - More robust processing with clear error messages and validation
+- **Optimized Performance** - Streamlined data processing workflow for better efficiency
+
 ### Version 1.9.0 - Enhanced Labeling System and Filter Configuration
 
 - **NEW Labeling Rules** - Updated to use koi_disposition instead of koi_pdisposition for improved accuracy:
@@ -300,6 +317,16 @@ For questions about the scientific methodology or technical implementation:
 - **Enhanced documentation** with benchmark comparison and scientific impact assessment
 
 **Ready for research applications, educational use, and machine learning development!**
+
+### Latest Updates (v1.9.2)
+
+The newest version introduces a critical improvement for machine learning applications: **CANDIDATE Exclusion Logic**. This ensures that training datasets are free from potentially ambiguous CANDIDATE classifications that could introduce noise or bias into machine learning models.
+
+**Key Benefits:**
+- **Data Purity**: Clean separation between confirmed planets, false positives, and unknown objects
+- **ML-Ready**: Eliminates data leakage concerns for supervised learning applications
+- **Scientific Rigor**: Follows best practices for astronomical data classification
+- **Enhanced Reproducibility**: Clear, documented processing steps for all data transformations
 
 ---
 
